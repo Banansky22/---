@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import os
 import logging
 from telegram import Update, ReplyKeyboardMarkup, KeyboardButton
@@ -11,6 +10,11 @@ import re
 import json
 import signal
 import sys
+
+# Проверка на Render
+ON_RENDER = os.environ.get('RENDER', False)
+if ON_RENDER:
+    print("🚀 Running on Render - using in-memory storage only")
 
 # Настройка логирования
 logging.basicConfig(
