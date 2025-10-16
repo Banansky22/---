@@ -1603,6 +1603,27 @@ def signal_handler(sig, frame):
     print('\n✅ Бот корректно завершает работу...')
     sys.exit(0)
 
+# === WEB SERVER FOR RENDER ===
+from flask import Flask
+import threading
+
+# Создаем простой Flask сервер для здоровья
+app = Flask(__name__)
+
+@app.route('/')
+def health_check():
+    return "✅ Financial Analyzer Bot is running!"
+
+@app.route('/health')
+def health():
+    return {"status": "healthy", "service": "telegram-bot"}
+
+def run_web_server():
+    """Запускает web-сервер в отдельном потоке"""
+    port = int(os.environ.get('PORT', 10000))
+    print(f"🌐 Web server starting on port {port}")
+    app.run(host='0.0.0.0', port=port, debug=False)
+    
 # === ОСНОВНАЯ ФУНКЦИЯ ===
 
 def main():
