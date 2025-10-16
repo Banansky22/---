@@ -1,1 +1,1 @@
-worker: python balance_analyzer.py
+web: python balance_analyzer.py
